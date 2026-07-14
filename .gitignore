@@ -2,8 +2,7 @@
 node_modules/
 jspm_packages/
 
-# Build outputs
-dist/
+# Build outputs (but allow frontend/dist for Vercel)
 build/
 out/
 .docusaurus/
