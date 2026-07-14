@@ -2,9 +2,6 @@
   "version": 2,
   "buildCommand": "npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend && npm install --legacy-peer-deps --prefix backend",
   "outputDirectory": "frontend/dist",
-  "functions": {
-    "api/index.js": {}
-  },
   "routes": [
     {
       "src": "/api/(.*)",
