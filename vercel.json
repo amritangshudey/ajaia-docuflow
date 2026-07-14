@@ -3,9 +3,7 @@
   "buildCommand": "npm install --legacy-peer-deps --prefix frontend && npm run build --prefix frontend && npm install --legacy-peer-deps --prefix backend",
   "outputDirectory": "frontend/dist",
   "functions": {
-    "api/index.js": {
-      "runtime": "@vercel/node@4.3.1"
-    }
+    "api/index.js": {}
   },
   "routes": [
     {
