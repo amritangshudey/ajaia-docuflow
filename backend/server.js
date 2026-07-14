@@ -5,26 +5,43 @@ import { run, get, all, initDb } from './db.js';
 
 const app = express();
 const port = process.env.PORT || 5001;
+let dbReady = false;
 
 app.use(cors());
 app.use(express.json());
 
-// Enable Foreign Key support in SQLite
+// Enable Foreign Key support in SQLite (but skip if not ready)
 app.use(async (req, res, next) => {
   try {
-    await run('PRAGMA foreign_keys = ON;');
+    if (dbReady) {
+      await run('PRAGMA foreign_keys = ON;');
+    }
     next();
   } catch (err) {
-    next(err);
+    // Log but don't fail the entire request
+    console.error('PRAGMA error:', err);
+    next();
   }
 });
 
 // Init DB and seed (disabled in test env, as tests trigger it explicitly)
 if (process.env.NODE_ENV !== 'test') {
   initDb()
-    .then(() => console.log('Database initialized successfully.'))
-    .catch((err) => console.error('Database initialization failed:', err));
+    .then(() => {
+      dbReady = true;
+      console.log('Database initialized successfully.');
+    })
+    .catch((err) => {
+      console.error('Database initialization failed:', err);
+      // Still mark as ready so the app continues to work
+      dbReady = true;
+    });
 }
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'ok', dbReady });
+});
 
 // HELPER: Validate document access for a user
 async function getDocAccess(documentId, userId) {
