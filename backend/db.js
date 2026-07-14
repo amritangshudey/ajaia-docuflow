@@ -5,19 +5,17 @@ import { dirname, join } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-// Use /tmp on Vercel (serverless), otherwise use local path
+// Use in-memory database on Vercel for testing, otherwise use local file
 const dbPath = 
-  process.env.NODE_ENV === 'test' 
+  process.env.NODE_ENV === 'test' || process.env.VERCEL
     ? ':memory:' 
-    : process.env.VERCEL 
-    ? '/tmp/docuflow.db'
     : join(__dirname, 'docuflow.db');
 
 const db = new sqlite3.Database(dbPath, (err) => {
   if (err) {
     console.error('Error opening database:', err);
   } else {
-    console.log('Connected to the SQLite database.');
+    console.log(`Connected to SQLite database at: ${dbPath}`);
   }
 });
 
