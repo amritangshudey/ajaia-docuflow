@@ -26,13 +26,14 @@ app.use(async (req, res, next) => {
 
 // Init DB and seed (disabled in test env, as tests trigger it explicitly)
 if (process.env.NODE_ENV !== 'test') {
+  console.log('Starting database initialization...');
   initDb()
     .then(() => {
       dbReady = true;
-      console.log('Database initialized successfully.');
+      console.log('✓ Database initialized successfully.');
     })
     .catch((err) => {
-      console.error('Database initialization failed:', err);
+      console.error('✗ Database initialization failed:', err.message || err);
       // Still mark as ready so the app continues to work
       dbReady = true;
     });
