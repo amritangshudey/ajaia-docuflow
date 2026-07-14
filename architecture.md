@@ -27,13 +27,13 @@ graph TD
 ```
 
 ### Frontend Surface
-- **State Coordination**: [App.jsx](file:///Users/amrit/Desktop/test/frontend/src/App.jsx) maintains the active document state, simulated user state, and document index.
-- **Rich Text Editor**: [EditorArea.jsx](file:///Users/amrit/Desktop/test/frontend/src/components/EditorArea.jsx) encapsulates the Quill editor. It dynamically instantiates Quill in `readOnly` mode or interactive mode based on user permission level.
-- **Aesthetic Engine**: [App.css](file:///Users/amrit/Desktop/test/frontend/src/App.css) provides the visual identity using CSS variables, custom dark colors, glassmorphic blurs, and animated state transitions.
+- **State Coordination**: [App.jsx](file:///Users/amrit/Desktop/ajaia-docuflow/frontend/src/App.jsx) maintains the active document state, simulated user state, and document index.
+- **Rich Text Editor**: [EditorArea.jsx](file:///Users/amrit/Desktop/ajaia-docuflow/frontend/src/components/EditorArea.jsx) encapsulates the Quill editor. It dynamically instantiates Quill in `readOnly` mode or interactive mode based on user permission level.
+- **Aesthetic Engine**: [App.css](file:///Users/amrit/Desktop/ajaia-docuflow/frontend/src/App.css) provides the visual identity using CSS variables, custom dark colors, glassmorphic blurs, and animated state transitions.
 
 ### Backend Surface
-- **HTTP Server**: [server.js](file:///Users/amrit/Desktop/test/backend/server.js) maps endpoints, handles basic validation, and implements document ownership and share checks on every document-related action.
-- **Persistence Driver**: [db.js](file:///Users/amrit/Desktop/test/backend/db.js) wraps SQLite async queries and runs database seeding on load.
+- **HTTP Server**: [server.js](file:///Users/amrit/Desktop/ajaia-docuflow/backend/server.js) maps endpoints, handles basic validation, and implements document ownership and share checks on every document-related action.
+- **Persistence Driver**: [db.js](file:///Users/amrit/Desktop/ajaia-docuflow/backend/db.js) wraps SQLite async queries and runs database seeding on load.
 
 ---
 

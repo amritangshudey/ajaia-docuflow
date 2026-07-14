@@ -9,9 +9,9 @@ This document summarizes the files, features, and links included in the Ajaia Do
 1. **Source Code**: Full-stack codebase located in the root folder.
    - `backend/`: Express server, database tables creation & default seeding, testing suite.
    - `frontend/`: React application configured via Vite, styled with custom dark-theme glassmorphism CSS, integrated with Quill.js editor.
-2. **[README.md](file:///Users/amrit/Desktop/test/README.md)**: Local setup and running instructions.
-3. **[architecture.md](file:///Users/amrit/Desktop/test/architecture.md)**: Details on our architectural decisions, data models, permissions structure, and tradeoffs.
-4. **[ai_workflow.md](file:///Users/amrit/Desktop/test/ai_workflow.md)**: AI Native Workflow reflection note detailing tools, code rejects, and validation steps.
+2. **[README.md](file:///Users/amrit/Desktop/ajaia-docuflow/README.md)**: Local setup and running instructions.
+3. **[architecture.md](file:///Users/amrit/Desktop/ajaia-docuflow/architecture.md)**: Details on our architectural decisions, data models, permissions structure, and tradeoffs.
+4. **[ai_workflow.md](file:///Users/amrit/Desktop/ajaia-docuflow/ai_workflow.md)**: AI Native Workflow reflection note detailing tools, code rejects, and validation steps.
 5. **Seeded Test Accounts**:
    - `alice@ajaia.com` (Simulated owner by default)
    - `bob@ajaia.com` (Simulated viewer/editor)
