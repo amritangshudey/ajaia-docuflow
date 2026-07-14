@@ -3,15 +3,15 @@
 This document summarizes the files, features, and links included in the Ajaia DocuFlow collaborative editor submission.
 
 ## Deployed URL
-* **Live App URL:** (Placeholder - Local testing setup provided. To run, use `npm run dev` at root)
+* **Live App URL:** https://ajaia-docuflow.vercel.app/
 
 ## Included Artifacts and Deliverables
 1. **Source Code**: Full-stack codebase located in the root folder.
-   - `backend/`: Express server, database tables creation & default seeding, testing suite.
-   - `frontend/`: React application configured via Vite, styled with custom dark-theme glassmorphism CSS, integrated with Quill.js editor.
-2. **[README.md](file:///Users/amrit/Desktop/ajaia-docuflow/README.md)**: Local setup and running instructions.
-3. **[architecture.md](file:///Users/amrit/Desktop/ajaia-docuflow/architecture.md)**: Details on our architectural decisions, data models, permissions structure, and tradeoffs.
-4. **[ai_workflow.md](file:///Users/amrit/Desktop/ajaia-docuflow/ai_workflow.md)**: AI Native Workflow reflection note detailing tools, code rejects, and validation steps.
+   - `backend/`: Express server, database tables creation & default seeding, testing suite.(https://drive.google.com/drive/folders/1AJzXl8R35I3CqADCgNz4J0kMJ3p3RKSB?usp=sharing)
+   - `frontend/`: React application configured via Vite, styled with custom dark-theme glassmorphism CSS, integrated with Quill.js editor.(https://drive.google.com/drive/folders/1mtsBaQVMedBzHYIJJX4LYoagEVrQ4Zbj?usp=sharing)
+2. **[README.md](https://drive.google.com/file/d/1oNE_M_nv1aWj2iSv-KbDfjjtzBURjNXM/view?usp=sharing)**: Local setup and running instructions.
+3. **[architecture.md](https://drive.google.com/file/d/1T1Lg32_-DDwrJDzkbhaDJqdEtjz0-TLl/view?usp=sharing)**: Details on our architectural decisions, data models, permissions structure, and tradeoffs.
+4. **[ai_workflow.md](https://drive.google.com/file/d/1Dn6V5GaOYVOB6Gt67aIt92nwLEsNY7vL/view?usp=sharing)**: AI Native Workflow reflection note detailing tools, code rejects, and validation steps.
 5. **Seeded Test Accounts**:
    - `alice@ajaia.com` (Simulated owner by default)
    - `bob@ajaia.com` (Simulated viewer/editor)
