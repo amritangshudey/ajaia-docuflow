@@ -306,7 +306,7 @@ app.delete('/api/documents/:id/shares/:targetUserId', async (req, res) => {
   }
 });
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' && !process.env.VERCEL) {
   app.listen(port, () => {
     console.log(`Server running on port ${port}`);
   });

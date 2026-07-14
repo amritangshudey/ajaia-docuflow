@@ -19,6 +19,11 @@ lerna-debug.log*
 *.db
 *.sqlite
 
+# Vercel
+.vercel
+.env.local
+.env.production
+
 # Environment variables / credentials
 .env
 .env.local
