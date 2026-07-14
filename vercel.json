@@ -4,7 +4,7 @@
   "outputDirectory": "frontend/dist",
   "functions": {
     "api/index.js": {
-      "runtime": "@vercel/node@3.1.1"
+      "runtime": "@vercel/node@4.x"
     }
   },
   "routes": [
