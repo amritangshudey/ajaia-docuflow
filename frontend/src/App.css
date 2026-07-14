@@ -767,6 +767,52 @@ body {
   color: var(--text-primary) !important;
 }
 
+/* Quill List Styling Fix */
+.ql-editor ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+}
+
+.ql-editor ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+}
+
+.ql-editor ol li,
+.ql-editor ul li {
+  margin-bottom: 0.5rem;
+}
+
+.ql-editor li {
+  list-style-position: outside;
+}
+
+/* FIX: Target bullet lists using data-list="bullet" attribute */
+.ql-editor ol li[data-list="bullet"] {
+  list-style-type: none !important;
+  margin-left: 1.5rem;
+}
+
+/* Hide the .ql-ui span for bullet lists (it renders the number) */
+.ql-editor ol li[data-list="bullet"] > .ql-ui {
+  display: none !important;
+}
+
+/* Add bullet point via ::before */
+.ql-editor ol li[data-list="bullet"]::before {
+  content: '• ';
+  margin-right: 0.5rem;
+}
+
+/* Ordered lists keep numbers */
+.ql-editor ol li[data-list="ordered"] {
+  list-style-type: decimal !important;
+}
+
+.ql-editor ol li[data-list="ordered"] > .ql-ui {
+  display: inline !important;
+}
+
 /* Modals styling (Sharing Settings) */
 .modal-backdrop {
   position: fixed;
