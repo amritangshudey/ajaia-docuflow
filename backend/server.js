@@ -72,6 +72,7 @@ app.get('/api/documents', async (req, res) => {
       SELECT 
         d.id, 
         d.title, 
+        d.content,
         d.owner_id, 
         u_owner.name AS owner_name, 
         u_owner.avatar_color AS owner_avatar_color, 
@@ -87,6 +88,7 @@ app.get('/api/documents', async (req, res) => {
       SELECT 
         d.id, 
         d.title, 
+        d.content,
         d.owner_id, 
         u_owner.name AS owner_name, 
         u_owner.avatar_color AS owner_avatar_color, 

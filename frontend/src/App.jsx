@@ -40,6 +40,13 @@ export default function App() {
     }
   }, [currentUser]);
 
+  // Refetch documents when returning to dashboard (activeDoc becomes null)
+  useEffect(() => {
+    if (activeDoc === null && currentUser) {
+      loadDocuments();
+    }
+  }, [activeDoc, currentUser]);
+
   const loadDocuments = async () => {
     try {
       const docs = await api.getDocuments(currentUser.id);

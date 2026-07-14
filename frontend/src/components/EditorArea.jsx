@@ -18,6 +18,7 @@ export default function EditorArea({
   const [title, setTitle] = useState(activeDoc.title);
   const [saveStatus, setSaveStatus] = useState('saved'); // 'saved', 'saving', 'error', 'viewonly'
   const [showShareModal, setShowShareModal] = useState(false);
+  const pendingContentRef = useRef(null); // Track unsaved content
 
   const permission = activeDoc.permission;
   const isOwner = permission === 'owner';
@@ -26,12 +27,28 @@ export default function EditorArea({
   // Synchronize state when switching documents
   useEffect(() => {
     setTitle(activeDoc.title);
+    pendingContentRef.current = null;
     if (permission === 'view') {
       setSaveStatus('viewonly');
     } else {
       setSaveStatus('saved');
     }
   }, [activeDoc.id, permission]);
+
+  // Cleanup effect: Save any pending changes before leaving
+  useEffect(() => {
+    return () => {
+      if (saveTimeoutRef.current) {
+        clearTimeout(saveTimeoutRef.current);
+      }
+      // If there are pending changes (still in saving state), save immediately
+      if (pendingContentRef.current && isEditable) {
+        const { title: pendingTitle, content: pendingContent } = pendingContentRef.current;
+        api.updateDocument(activeDoc.id, pendingTitle, pendingContent, currentUser.id)
+          .catch(err => console.error('Error saving pending changes:', err));
+      }
+    };
+  }, [activeDoc.id, isEditable, currentUser.id]);
 
   // Initialize Quill Editor
   useEffect(() => {
@@ -68,10 +85,14 @@ export default function EditorArea({
       
       setSaveStatus('saving');
       
+      // Record pending content IMMEDIATELY (don't wait for debounce)
+      const content = quill.root.innerHTML;
+      pendingContentRef.current = { title, content };
+      
       // Debounce saving
       if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
       saveTimeoutRef.current = setTimeout(() => {
-        triggerSave(title, quill.root.innerHTML);
+        triggerSave(title, content);
       }, 1000);
     });
 
@@ -90,6 +111,7 @@ export default function EditorArea({
     if (saveTimeoutRef.current) clearTimeout(saveTimeoutRef.current);
     saveTimeoutRef.current = setTimeout(() => {
       const currentContent = quillRef.current ? quillRef.current.root.innerHTML : activeDoc.content;
+      pendingContentRef.current = { title: newTitle, content: currentContent };
       triggerSave(newTitle, currentContent);
     }, 1000);
   };
@@ -99,6 +121,7 @@ export default function EditorArea({
     try {
       await api.updateDocument(activeDoc.id, updatedTitle, updatedContent, currentUser.id);
       setSaveStatus('saved');
+      pendingContentRef.current = null; // Clear pending after successful save
       onUpdateDocList(activeDoc.id, updatedTitle, updatedContent);
     } catch (err) {
       console.error(err);
